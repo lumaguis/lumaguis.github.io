@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Three.js and AR.js Red Sphere Example</title>
+    <style>
+      #container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.130.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/arjs@2.3.1/aframe/build/aframe-ar-nft.js"></script>
+    <script>
+      // Create the scene and camera
+      var scene = new THREE.Scene();
+      var camera = new THREE.Camera();
+
+      // Create the red sphere
+      var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 32, 32),
+        new THREE.MeshBasicMaterial({ color: 0xff0000 })
+      );
+      sphere.position.set(0, 0, -1);
+      sphere.rotation.y = 0.5;
+      scene.add(sphere);
+
+      // Create the AR marker and render the scene
+      var marker = new THREE.Group();
+      marker.add(camera);
+      marker.add(sphere);
+      new THREEx.ArMarkerControls().attachMarkerObject(marker, {
+        type: "nft",
+        url: "marker.patt",
+        smooth: 1.0,
+        smoothCount: 10,
+        smoothTolerance: 0.01,
+      });
+      scene.add(marker);
+      var renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      document.getElementById("container").appendChild(renderer.domElement);
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
+</html>
