@@ -6,17 +6,22 @@
  <meta charset="utf-8">
  <meta name="description" content="Homework 3 VR">
  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
-    <script src="anima.js">
+    <script src="anima.js"><script src="colortoggle.js"></script>
  </script>
 </head>
 <body>
- <a-scene>
+ <a-scene cursor="rayOrigin: mouse">
  
- <a-sphere position="0 1.25 -5" radius="1.2" color="#525252" change-color > </a-sphere>
- <a-cylinder position="1 0.75 -3" radius="0.6" height="2" color="#874C62" material=img src="https://www.history.com/.image/t_share/MTU3ODc4NjA0MzE5NDk5OTk5/gettyimages-479029432-2.jpg" alt="Lamp" width="500" height="500" rotation="0 180 0"></a-cylinder>
+ <a-sphere position="0 1.25 -5" radius="1.2" color="#525252" color-toggle > </a-sphere>
+ <a-cylinder position="1 0.75 -3" radius="0.6" height="2" color="#874C62" color-toggle moving material=img src="https://www.history.com/.image/t_share/MTU3ODc4NjA0MzE5NDk5OTk5/gettyimages-479029432-2.jpg" alt="Lamp" width="500" height="500" rotation="0 180 0"></a-cylinder>
  <a-plane position="0 0 -4" rotation="-90 0 0" width="6" height="6" color="#c98474"></a-plane>
 
  <a-sky color="#3A98B9"></a-sky>
+ <<a-entity id="dolly">
+    <a-entity id="dolly">
+ <a-entity camera position="0 2 0" look-controls wasd-controls>
+ <a-cursor id="cursor" raycaster fuse="true" fuse-timeout="3000"></a-cursor>
+ </a-entity>
 
  </a-scene>
 </body>
